@@ -6,4 +6,5 @@ if Meteor.isClient
   Template.posts.helpers
     testVar1: "testVar1"
     testVar2: "testVar2"
+    testVar3: true
   

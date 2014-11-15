@@ -7,8 +7,10 @@ body
   
 
 template(name="posts")
-  h2 {{testVar1}}
-  h2 {{testVar2}}
+  if testVar3
+    h2 {{testVar1}}
+  if testVar4
+    h2 {{testVar2}}
   +post1
   +post2
   +post3
