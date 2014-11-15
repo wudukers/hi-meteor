@@ -20,10 +20,15 @@ template(name="posts")
   //- +post2
   //- +post3
   each testArrayVar
-    hr
-    h2 {{text}}
-    hr
+    +post
 
+template(name="post")
+  hr
+  if author
+    h2 {{author}} says: {{text}}
+  else
+    h2 Anonymous says: {{text}}
+  hr
 
 template(name="post1")
   hr

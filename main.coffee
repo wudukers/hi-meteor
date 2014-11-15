@@ -17,5 +17,8 @@ if Meteor.isClient
     
     testFnVar: (a,b) -> a+b
 
-    testArrayVar: [{text:"Hi! Meteor!"},{text:"Meteor is great!"},{text:"Meteor is the best!"}]
+    testArrayVar: [
+      {text:"Hi! Meteor!",author:"c3h3"},
+      {text:"Meteor is great!"},
+      {text:"Meteor is the best!"}]
       
