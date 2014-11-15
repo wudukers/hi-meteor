@@ -36,6 +36,9 @@ Meteor.startup ->
       path: "user/:_id"
       template: "user"
       data:
+        postCount: ->
+          Posts.find().count()
+          
         posts: ->
           pageUserId = Session.get "pageUserId"
           console.log "pageUserId = "
