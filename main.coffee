@@ -38,7 +38,7 @@ Meteor.startup ->
 
 
     @route "user",
-      path: "user/:_id"
+      path: "meteorUserPage/:_id"
       template: "user"
       data:
         postCount: ->

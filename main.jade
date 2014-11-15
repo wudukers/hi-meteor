@@ -65,8 +65,11 @@ template(name="index")
 template(name="post")
   hr
   if author
+    //- h2
+    //-   a(href="meteorUser/{{userId}}") {{author}}
     h2
-      a(href="user/{{userId}}") {{author}}
+      a(href="{{pathFor 'user' _id=userId}}") {{author}}
+    h2 {{userId}}
     h2 says: {{text}}
   else
     h2 Anonymous says: {{text}}
