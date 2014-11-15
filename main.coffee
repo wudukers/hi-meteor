@@ -55,6 +55,21 @@ Meteor.startup ->
         Meteor.subscribe "userPosts", @params._id
 
 
+    @route "postPage",
+      path: "postPage/:postId"
+      template: "postPage"
+      data:
+        author: ->
+          Posts.findOne().author
+        text: ->
+          Posts.findOne().text
+
+      waitOn: ->
+        Session.set "postId", @params.postId
+        Meteor.subscribe "onePost", @params.postId
+
+
+    
 
     @route "pleaseLogin",
       path: "pleaseLogin/"
@@ -131,6 +146,8 @@ if Meteor.isServer
   Meteor.publish "userPosts", (userId) -> 
     Posts.find userId:userId
 
+  Meteor.publish "onePost", (postId) ->
+    Posts.find _id:postId
 
   Meteor.methods
     "insertPost": (text) -> 
