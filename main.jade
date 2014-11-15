@@ -25,10 +25,7 @@ template(name="navBar")
           li.nav.navbar-nav
             a(href="#") Posts
 
-          li.nav.navbar-nav
-            a(href="{{pathFor 'user'}}") Users
-
-
+    
         ul.nav.navbar-nav.navbar-right
           li
             +loginButtons
@@ -55,6 +52,8 @@ template(name="index")
   .container
     .row.clearfix
       .col-md-12.column
+        h2 PostCount = {{postCount}}
+        hr
         h2 post : 
         input#insertPost
         hr
@@ -66,7 +65,9 @@ template(name="index")
 template(name="post")
   hr
   if author
-    h2 {{userId}} {{author}} says: {{text}}
+    h2
+      a(href="user/{{userId}}") {{author}}
+    h2 says: {{text}}
   else
     h2 Anonymous says: {{text}}
   hr

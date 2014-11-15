@@ -13,13 +13,18 @@ Meteor.startup ->
       path: "/"
       template: "index"
       data:
+        postCount: ->
+          Posts.find().count()
+        
         posts: ->
-          Posts.find()
+          Posts.find {}, {sort:{createAt:-1}}
 
       waitOn: ->
         user = Meteor.user()
         if not user
           Router.go "pleaseLogin"
+
+        Meteor.subscribe "allPosts"
 
     @route "show",
       path: "show/:words"
@@ -38,15 +43,16 @@ Meteor.startup ->
       data:
         postCount: ->
           Posts.find().count()
-          
+
         posts: ->
           pageUserId = Session.get "pageUserId"
           console.log "pageUserId = "
           console.log pageUserId
-          Posts.find {userId:pageUserId}
+          Posts.find {userId:pageUserId}, {sort:{createAt:-1}}
 
       waitOn: ->
         Session.set "pageUserId", @params._id
+        Meteor.subscribe "userPosts", @params._id
 
 
 
@@ -81,7 +87,51 @@ Meteor.startup ->
 #           console.log "err = "
 #           console.log err
 
+if Meteor.isClient
+  Template.index.events
+    "change input#insertPost": (e,t) ->
+      e.stopPropagation()
+      text = $("input#insertPost").val()
+
+      Meteor.call "insertPost", text, (err, data)->
+        
+        $("#insertPost").val("")
+        
+        if not err
+          console.log "data = "
+          console.log data
+
+        else
+          console.log "err = "
+          console.log err
+
+  Template.user.events
+    "change input#insertPost": (e,t) ->
+      e.stopPropagation()
+      text = $("input#insertPost").val()
+
+      Meteor.call "insertPost", text, (err, data)->
+        
+        $("#insertPost").val("")
+        
+        if not err
+          console.log "data = "
+          console.log data
+
+        else
+          console.log "err = "
+          console.log err
+
+
 if Meteor.isServer
+
+  Meteor.publish "allPosts", -> 
+    Posts.find()
+
+  Meteor.publish "userPosts", (userId) -> 
+    Posts.find userId:userId
+
+
   Meteor.methods
     "insertPost": (text) -> 
 
