@@ -18,6 +18,22 @@ if Meteor.isClient
       # username = $("input#insertUsername").val()
       text = $("input#insertPost").val()
 
+      Meteor.call "insertPost", text, (err, data)->
+        
+        $("#insertPost").val("")
+        
+        if not err
+          console.log "data = "
+          console.log data
+
+        else
+          console.log "err = "
+          console.log err
+
+if Meteor.isServer
+  Meteor.methods
+    "insertPost": (text) -> 
+
       user = Meteor.user()
 
       if user
@@ -34,13 +50,10 @@ if Meteor.isClient
           text: text
           createAt: new Date
 
-
-      $("#insertPost").val("")
-
       Posts.insert data
 
 
-if Meteor.isServer
+
   if Posts.find().count() is 0
     Posts.insert post for post in testPosts
       
