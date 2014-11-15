@@ -36,20 +36,18 @@ if Meteor.isServer
 
       user = Meteor.user()
 
-      if user
-        username = user.profile.name
-        userId = user._id
+      if !user
+        throw new Meteor.Error(401, "You need to login to insert post")
 
-        data = 
-          userId: userId
-          author: username
-          text: text
-          createAt: new Date
-      else
-        data = 
-          text: text
-          createAt: new Date
+      username = user.profile.name
+      userId = user._id
 
+      data = 
+        userId: userId
+        author: username
+        text: text
+        createAt: new Date
+    
       Posts.insert data
 
 
