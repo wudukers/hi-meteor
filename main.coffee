@@ -1,4 +1,19 @@
+
+
 @Posts = new Meteor.Collection "posts"
+
+Router.configure
+  layoutTemplate: 'layout'
+
+
+Meteor.startup ->
+  Router.map -> 
+    
+    @route "index",
+      path: "/"
+      template: "index"
+      
+
 
 if Meteor.isClient
   Template.posts.helpers

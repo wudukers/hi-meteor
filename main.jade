@@ -2,7 +2,12 @@
 head
   title Hi! Meteor!
 
-body
+template(name="layout")
+  +navBar
+  +yield
+
+
+template(name="navBar")
   .navbar.navbar-inverse.navbar-fixed-top
     .container
       .navbar-header
@@ -29,6 +34,9 @@ body
           li
             +loginButtons
 
+  
+
+template(name="index")
   .container
     .row.clearfix
       .col-md-12.column
