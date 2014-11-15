@@ -9,4 +9,5 @@ if Meteor.isClient
     testVar3: true
     testVar4: false
     testVar5: 123.321
+    testVar6: new Date
   
