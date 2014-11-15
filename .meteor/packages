@@ -8,4 +8,6 @@ autopublish
 coffeescript
 mquandalle:jade
 insecure
+accounts-ui
+accounts-facebook
 
