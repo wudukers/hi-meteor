@@ -1,10 +1,3 @@
-
-@testPosts = [
-      {text:"Hi! Meteor!",author:"c3h3"},
-      {text:"Meteor is great!"},
-      {text:"Meteor is the best!"}
-    ]
-
 @Posts = new Meteor.Collection "posts"
 
 if Meteor.isClient
@@ -15,7 +8,6 @@ if Meteor.isClient
   Template.posts.events
     "change input#insertPost": (e,t) ->
       e.stopPropagation()
-      # username = $("input#insertUsername").val()
       text = $("input#insertPost").val()
 
       Meteor.call "insertPost", text, (err, data)->
@@ -50,8 +42,4 @@ if Meteor.isServer
     
       Posts.insert data
 
-
-
-  if Posts.find().count() is 0
-    Posts.insert post for post in testPosts
       
