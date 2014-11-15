@@ -12,6 +12,10 @@ Meteor.startup ->
     @route "index",
       path: "/"
       template: "index"
+      waitOn: ->
+        user = Meteor.user()
+        if not user
+          Router.go "pleaseLogin"
 
     @route "user",
       path: "user/:_id"
@@ -20,6 +24,16 @@ Meteor.startup ->
         posts: ->
           uid = Meteor.userId()
           Posts.find {userId:uid}
+
+    @route "pleaseLogin",
+      path: "pleaseLogin/"
+      template: "pleaseLogin"
+      waitOn: ->
+        user = Meteor.user()
+        if user
+          Router.go "index"
+
+    
 
       
 
