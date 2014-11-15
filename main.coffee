@@ -15,12 +15,25 @@ if Meteor.isClient
   Template.posts.events
     "change input#insertPost": (e,t) ->
       e.stopPropagation()
-      username = $("input#insertUsername").val()
+      # username = $("input#insertUsername").val()
       text = $("input#insertPost").val()
-      data = 
-        author: username
-        text: text
-        createAt: new Date
+
+      user = Meteor.user()
+
+      if user
+        username = user.profile.name
+        userId = user._id
+
+        data = 
+          userId: userId
+          author: username
+          text: text
+          createAt: new Date
+      else
+        data = 
+          text: text
+          createAt: new Date
+
 
       $("#insertPost").val("")
 
