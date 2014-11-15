@@ -6,6 +6,11 @@ body
   +posts
   
 template(name="posts")
+  h2 UserName : 
+  input#insertUsername
+  h2 post : 
+  input#insertPost
+  hr
   each posts
     +post
 

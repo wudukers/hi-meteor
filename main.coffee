@@ -10,7 +10,21 @@
 if Meteor.isClient
   Template.posts.helpers
     posts: -> 
-      Posts.find()
+      Posts.find({}, {sort:{createAt:-1}})
+
+  Template.posts.events
+    "change input#insertPost": (e,t) ->
+      e.stopPropagation()
+      username = $("input#insertUsername").val()
+      text = $("input#insertPost").val()
+      data = 
+        author: username
+        text: text
+        createAt: new Date
+
+      $("#insertPost").val("")
+
+      Posts.insert data
 
 
 if Meteor.isServer
