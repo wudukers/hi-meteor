@@ -1,14 +1,24 @@
 
 head
-	title Hi! Meteor!
+  title Hi! Meteor!
 
 body
-	hr
-	h2 Hi! Meteor! 
-	hr
-	hr
-	h2 Meteor is great!
-	hr
-	hr
-	h2 Meteor is the best!
-	hr
+  +post1
+  +post2
+  +post3
+
+template(name="post1")
+  hr
+  h2 Hi! Meteor! 
+  hr
+
+template(name="post2")
+  hr
+  h2 Meteor is great!
+  hr
+
+template(name="post3")
+  hr
+  h2 Meteor is the best!
+  hr
+
