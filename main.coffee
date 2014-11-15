@@ -16,3 +16,6 @@ if Meteor.isClient
       def: 234    
     
     testFnVar: (a,b) -> a+b
+
+    testArrayVar: [{text:"Hi! Meteor!"},{text:"Meteor is great!"},{text:"Meteor is the best!"}]
+      
