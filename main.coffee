@@ -12,7 +12,7 @@ if Meteor.isClient
     testVar6: new Date
 
     testObjVar: 
-      abc: "123"
-      def: "234"    
+      abc: 123
+      def: 234    
     
-    
+    testFnVar: (a,b) -> a+b
