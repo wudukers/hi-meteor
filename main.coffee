@@ -12,18 +12,40 @@ Meteor.startup ->
     @route "index",
       path: "/"
       template: "index"
+      data:
+        posts: ->
+          Posts.find()
+
       waitOn: ->
         user = Meteor.user()
         if not user
           Router.go "pleaseLogin"
+
+    @route "show",
+      path: "show/:words"
+      template: "show"
+      data:
+        words: ->
+          Session.get "words"
+          
+      waitOn: ->
+        Session.set "words", @params.words
+
 
     @route "user",
       path: "user/:_id"
       template: "user"
       data:
         posts: ->
-          uid = Meteor.userId()
-          Posts.find {userId:uid}
+          pageUserId = Session.get "pageUserId"
+          console.log "pageUserId = "
+          console.log pageUserId
+          Posts.find {userId:pageUserId}
+
+      waitOn: ->
+        Session.set "pageUserId", @params._id
+
+
 
     @route "pleaseLogin",
       path: "pleaseLogin/"
@@ -33,33 +55,28 @@ Meteor.startup ->
         if user
           Router.go "index"
 
-    
 
-      
+# if Meteor.isClient
+#   Template.posts.helpers
+#     posts: -> 
+#       Posts.find({}, {sort:{createAt:-1}})
 
+#   Template.posts.events
+#     "change input#insertPost": (e,t) ->
+#       e.stopPropagation()
+#       text = $("input#insertPost").val()
 
-
-if Meteor.isClient
-  Template.posts.helpers
-    posts: -> 
-      Posts.find({}, {sort:{createAt:-1}})
-
-  Template.posts.events
-    "change input#insertPost": (e,t) ->
-      e.stopPropagation()
-      text = $("input#insertPost").val()
-
-      Meteor.call "insertPost", text, (err, data)->
+#       Meteor.call "insertPost", text, (err, data)->
         
-        $("#insertPost").val("")
+#         $("#insertPost").val("")
         
-        if not err
-          console.log "data = "
-          console.log data
+#         if not err
+#           console.log "data = "
+#           console.log data
 
-        else
-          console.log "err = "
-          console.log err
+#         else
+#           console.log "err = "
+#           console.log err
 
 if Meteor.isServer
   Meteor.methods

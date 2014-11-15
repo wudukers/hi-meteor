@@ -37,25 +37,30 @@ template(name="user")
   .container
     .row.clearfix
       .col-md-12.column
-        h2 Hello! Users!
-        +posts
+        h2 post : 
+        input#insertPost
+        hr
+        each posts
+          +post
 
-  
+template(name="show")
+  .container
+    .row.clearfix
+      .col-md-12.column
+        h2 {{words}}
 
 template(name="index")
   .container
     .row.clearfix
       .col-md-12.column
-        +posts
-  
-template(name="posts")
-  
-  h2 post : 
-  input#insertPost
-  hr
-  each posts
-    +post
+        h2 post : 
+        input#insertPost
+        hr
+        each posts
+          +post
 
+    
+  
 template(name="post")
   hr
   if author
