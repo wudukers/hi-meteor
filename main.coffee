@@ -7,4 +7,6 @@ if Meteor.isClient
     testVar1: "testVar1"
     testVar2: "testVar2"
     testVar3: true
+    testVar4: false
+    testVar5: 123.321
   
