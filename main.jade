@@ -13,6 +13,9 @@ template(name="posts")
     h2 {{testVar2}}
   h2 {{testVar5}}
   h2 {{testVar6}}
+  h2 {{testObjVar.abc}} {{testObjVar.def}}
+  h2 {{testObjVar}}
+  h2 {{testFnVar testObjVar.abc testObjVar.def}} 
   +post1
   +post2
   +post3

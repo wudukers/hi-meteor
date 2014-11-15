@@ -10,4 +10,9 @@ if Meteor.isClient
     testVar4: false
     testVar5: 123.321
     testVar6: new Date
-  
+
+    testObjVar: 
+      abc: "123"
+      def: "234"    
+    
+    
