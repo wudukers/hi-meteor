@@ -13,9 +13,16 @@ Meteor.startup ->
       path: "/"
       template: "index"
 
-    @route "users",
-      path: "users/"
-      template: "users"
+    @route "user",
+      path: "user/:_id"
+      template: "user"
+      data:
+        posts: ->
+          uid = Meteor.userId()
+          Posts.find {userId:uid}
+
+      
+
 
 
 if Meteor.isClient

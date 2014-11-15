@@ -26,18 +26,19 @@ template(name="navBar")
             a(href="#") Posts
 
           li.nav.navbar-nav
-            a(href="{{pathFor 'users'}}") Users
+            a(href="{{pathFor 'user'}}") Users
 
 
         ul.nav.navbar-nav.navbar-right
           li
             +loginButtons
 
-template(name="users")
+template(name="user")
   .container
     .row.clearfix
       .col-md-12.column
         h2 Hello! Users!
+        +posts
 
   
 
@@ -58,7 +59,7 @@ template(name="posts")
 template(name="post")
   hr
   if author
-    h2 {{author}} says: {{text}}
+    h2 {{userId}} {{author}} says: {{text}}
   else
     h2 Anonymous says: {{text}}
   hr
