@@ -16,7 +16,7 @@ template(name="navBar")
           span.icon-bar
           span.icon-bar
 
-        a.navbar-brand(href="/") Hi!Meteor!
+        a.navbar-brand(href="{{pathFor 'index'}}") Hi!Meteor!
       .collapse.navbar-collapse
         ul.nav.navbar-nav
           li.nav.navbar-nav
@@ -25,14 +25,19 @@ template(name="navBar")
           li.nav.navbar-nav
             a(href="#") Posts
 
-            
+          li.nav.navbar-nav
+            a(href="{{pathFor 'users'}}") Users
 
 
         ul.nav.navbar-nav.navbar-right
-          //- li.nav.navbar-nav
-          //-   img.user-img.img-circle(src="{{user.profile.photo.thumb_link}}")
           li
             +loginButtons
+
+template(name="users")
+  .container
+    .row.clearfix
+      .col-md-12.column
+        h2 Hello! Users!
 
   
 

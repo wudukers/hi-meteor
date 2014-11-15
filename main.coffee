@@ -12,7 +12,10 @@ Meteor.startup ->
     @route "index",
       path: "/"
       template: "index"
-      
+
+    @route "users",
+      path: "users/"
+      template: "users"
 
 
 if Meteor.isClient
